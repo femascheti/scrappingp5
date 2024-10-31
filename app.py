@@ -17,8 +17,9 @@ def fetch_info_projetos(link):
         nome_usuario = link.split("/")[3]
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
-        options = uc.ChromeOptions()
+        
         chrome_path = os.getenv('GOOGLE_CHROME_SHIM')
+        options = uc.ChromeOptions()
         
         if chrome_path:
             options.binary_location = chrome_path
@@ -28,7 +29,7 @@ def fetch_info_projetos(link):
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--window-size=1920x1080')
 
-        driver = uc.Chrome(options=options)
+        driver = uc.Chrome(options=options, browser_executable_path=chrome_path)
         driver.get(user_sketches_url)
         time.sleep(3)
 
