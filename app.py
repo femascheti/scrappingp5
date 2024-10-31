@@ -1,10 +1,8 @@
 import os
 from flask import Flask, render_template, request, jsonify  
-import chromedriver_binary
+import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 from datetime import datetime, timedelta
 from flask_cors import CORS
@@ -19,21 +17,13 @@ def fetch_info_projetos(link):
         nome_usuario = link.split("/")[3]
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
-        options = Options()
-        options.binary_location = os.getenv('GOOGLE_CHROME_SHIM', "/app/.apt/usr/bin/google-chrome")
+        options = uc.ChromeOptions()
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        options.add_argument('--disable-gpu')
-        options.add_argument('--remote-debugging-port=9222')
         options.add_argument('--window-size=1920x1080')
-        options.add_argument('--user-data-dir=/tmp/user-data')
-        options.add_argument('--data-path=/tmp/data-path')
-        options.add_argument('--homedir=/tmp')
-        options.add_argument('--disk-cache-dir=/tmp/cache-dir')
-        options.add_argument('--disable-software-rasterizer')
-        options.add_argument('--disable-extensions')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+        driver = uc.Chrome(options=options)
         driver.get(user_sketches_url)
         time.sleep(3)
 
