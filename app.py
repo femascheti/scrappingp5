@@ -19,12 +19,12 @@ def fetch_info_projetos(link):
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
         options = Options()
-        options.binary_location = "/app/.apt/usr/bin/google-chrome" 
+        options.binary_location = os.getenv('GOOGLE_CHROME_SHIM', "/app/.apt/usr/bin/google-chrome")
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-gpu')
-        options.add_argument('--remote-debugging-port=9222')  # Necessário em alguns ambientes
+        options.add_argument('--remote-debugging-port=9222')
         options.add_argument('--window-size=1920x1080')
         options.add_argument('--user-data-dir=/tmp/user-data')
         options.add_argument('--data-path=/tmp/data-path')
