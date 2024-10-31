@@ -2,4 +2,3 @@ Flask
 selenium
 gunicorn
 flask-cors
-chromedriver-binary==130.0.6723.91
