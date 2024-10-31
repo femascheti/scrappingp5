@@ -18,7 +18,7 @@ def fetch_info_projetos(link):
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
         
-        chrome_path = os.getenv('GOOGLE_CHROME_SHIM')
+        chrome_path = os.getenv('GOOGLE_CHROME_SHIM', "/app/.apt/usr/bin/google-chrome")
         options = uc.ChromeOptions()
         
         if chrome_path:
