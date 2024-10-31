@@ -30,6 +30,8 @@ def fetch_info_projetos(link):
         options.add_argument('--data-path=/tmp/data-path')
         options.add_argument('--homedir=/tmp')
         options.add_argument('--disk-cache-dir=/tmp/cache-dir')
+        options.add_argument('--disable-software-rasterizer')
+        options.add_argument('--disable-extensions')
         driver = webdriver.Chrome(options=options)
         driver.get(user_sketches_url)
         time.sleep(3)
