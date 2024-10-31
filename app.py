@@ -75,3 +75,7 @@ def index():
         else:
             return jsonify({"error": "Link inválido"}), 400
     return render_template("index.html")
+
+if __name__ == "__main__":
+    print("Iniciando aplicação Flask...")
+    app.run()
