@@ -2,3 +2,4 @@ Flask
 selenium
 gunicorn
 flask-cors
+chromedriver-binary
