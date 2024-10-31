@@ -17,6 +17,10 @@ def fetch_info_projetos(link):
         nome_usuario = link.split("/")[3]
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
+        chrome_path = os.getenv('GOOGLE_CHROME_SHIM')
+        if chrome_path:
+            options.binary_location = chrome_path
+            
         options = uc.ChromeOptions()
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
