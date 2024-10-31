@@ -19,6 +19,7 @@ def fetch_info_projetos(link):
         user_sketches_url = f"{base_url}{nome_usuario}/sketches"
 
         options = Options()
+        options.binary_location = "/app/.apt/usr/bin/google-chrome" 
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
@@ -30,7 +31,6 @@ def fetch_info_projetos(link):
         options.add_argument('--homedir=/tmp')
         options.add_argument('--disk-cache-dir=/tmp/cache-dir')
         driver = webdriver.Chrome(options=options)
-
         driver.get(user_sketches_url)
         time.sleep(3)
 
