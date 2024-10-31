@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
 from datetime import datetime, timedelta
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
