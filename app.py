@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, jsonify
 import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 import time
 from datetime import datetime, timedelta
 from flask_cors import CORS
@@ -19,17 +21,17 @@ def fetch_info_projetos(link):
 
         
         chrome_path = os.getenv('GOOGLE_CHROME_SHIM', "/app/.apt/usr/bin/google-chrome")
-        options = uc.ChromeOptions()
-        
-        if chrome_path:
-            options.binary_location = chrome_path
-            
+        chromedriver_path = "/app/.chromedriver/bin/chromedriver"
+        options = Options()
+        options.binary_location = chrome_path
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--window-size=1920x1080')
 
-        driver = uc.Chrome(options=options, browser_executable_path=chrome_path)
+        service = Service(executable_path=chromedriver_path)
+        driver = webdriver.Chrome(service=service, options=options)        
+        
         driver.get(user_sketches_url)
         time.sleep(3)
 
