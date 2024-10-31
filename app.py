@@ -4,6 +4,7 @@ import chromedriver_binary
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 from datetime import datetime, timedelta
 from flask_cors import CORS
@@ -32,7 +33,7 @@ def fetch_info_projetos(link):
         options.add_argument('--disk-cache-dir=/tmp/cache-dir')
         options.add_argument('--disable-software-rasterizer')
         options.add_argument('--disable-extensions')
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         driver.get(user_sketches_url)
         time.sleep(3)
 
