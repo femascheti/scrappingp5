@@ -7,6 +7,7 @@ import time
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
+CORS(app)
 
 def fetch_info_projetos(link):
     driver = None
